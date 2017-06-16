@@ -14,5 +14,7 @@
     a：首先使用`adb reverse tcp 8081 tcp:8081` 将电脑8081端口反向代理带测试机
     b:`react-native run-android`  运行
 
+## NavigationUsage
 
+NavigationUsage的用法
 
