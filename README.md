@@ -18,3 +18,7 @@
 
 NavigationUsage的用法
 
+## PanResponderUsage
+
+PanResponderUsage的用法
+
