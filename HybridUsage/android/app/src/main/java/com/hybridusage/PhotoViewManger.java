@@ -1,14 +1,11 @@
 package com.hybridusage;
 
-import android.support.annotation.Nullable;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
@@ -41,27 +38,26 @@ public class PhotoViewManger extends SimpleViewManager<PhotoView> {
         photoView.setOnScaleChangeListener(new OnScaleChangedListener() {
             @Override
             public void onScaleChange(float scaleFactor, float focusX, float focusY) {
-
                 // 这里又2中方案 ：  1.
+
+                aContext.getNativeModule(UIManagerModule.class).getEventDispatcher()
+                        .dispatchEvent(new ReactScaleChangeEvent(photoView.getId(),
+                                "ScaleInfo: scaleFactor:" + scaleFactor
+                                        + ",focusX" + focusX + ",focusY" + focusY));
+
+
+//                // 2.
+//                WritableMap map = Arguments.createMap();
+//                map.putInt("target", photoView.getId());
+//                map.putString("msg", "ScaleInfo: scaleFactor:" + scaleFactor
+//                        + ",focusX" + focusX + ",focusY" + focusY);
 //
-//                aContext.getNativeModule(UIManagerModule.class).getEventDispatcher()
-//                        .dispatchEvent(new ReactScaleChangeEvent(photoView.getId(),
-//                                "ScaleInfo: scaleFactor:" + scaleFactor
-//                                        + ",focusX" + focusX + ",focusY" + focusY));
-
-
-                // 2.
-                WritableMap map = Arguments.createMap();
-                map.putInt("target", photoView.getId());
-                map.putString("msg", "ScaleInfo: scaleFactor:" + scaleFactor
-                        + ",focusX" + focusX + ",focusY" + focusY);
-
-                /**
-                 * {@link com.facebook.react.uimanager.UIManagerModuleConstants}
-                 */
-                aContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-                        photoView.getId(), "topChange", map
-                );
+//                /**
+//                 * {@link com.facebook.react.uimanager.UIManagerModuleConstants}
+//                 */
+//                aContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+//                        photoView.getId(), "topChange", map
+//                );
 
             }
         });
@@ -79,7 +75,7 @@ public class PhotoViewManger extends SimpleViewManager<PhotoView> {
  * {@link com.facebook.react.uimanager.UIManagerModuleConstants}
  */
 class ReactScaleChangeEvent extends Event<ReactScaleChangeEvent> {
-    public static final String EVENT_NAME = "scaleChange"; //会被映射为onChange 具体映射关系参见 UIManagerModuleConstants.java
+    public static final String EVENT_NAME = "topChange"; //会被映射为onChange 具体映射关系参见 UIManagerModuleConstants.java
 
     private String msg;
 
