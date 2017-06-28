@@ -18,9 +18,9 @@ class Main extends Component {
 
             <WebView
                 ref={webView => this._webView = webView}
-                source={{uri: 'https://www.baidu.com'}}
-                // source={require('./react-native.png')}
-                style={{width: '100%', flex: 1, padding: 200}} //我这里使用Android模拟器，只有设置了padding，页面才会被加出来，api 0.45
+                source={{uri: 'https://github.com/blueberryCoder/RNDemo'}}
+                // style={{width: '100%', flex: 1}} //我这里使用Android模拟器，如果父组件设置了 alignItem:'center'
+                // webView只有设置了padding，页面才会被加出来，api 0.45
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
             />
@@ -30,10 +30,10 @@ class Main extends Component {
 
 var styles = StyleSheet.create({
     container: {
-        width: '100%',
+        // width: '100%',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center', //设置如果设置的话，web就必须设置 padding才能显示，这是不是一个bug?
     },
 
     firstRow: {

@@ -1,20 +1,9 @@
 [TOC]
 
 # React Native Demo
+一些React Native的示例
 
-## Note 
-    一个用react native的类似笔记本的Demo
-
-### 安装
-1. clone repo
-    git clone ... .git
-2. cd 项目路径
-3. 安装依赖  `npm install `
-4. 安装以Android为例，
-    a：首先使用`adb reverse tcp 8081 tcp:8081` 将电脑8081端口反向代理带测试机
-    b:`react-native run-android`  运行
-
-## lark 一个通讯录App
+## lark 一个模仿企业内部通讯录的App
 
 ### 服务端
 服务端代码在 `lart/server`中，其中README.md是接口的说明文档
@@ -39,15 +28,29 @@ $ react-native run-android
 邮箱：123@qq.com
 密码：123
 
-## NavigationUsage
+
+## Note 一个记录日记的App
+    一个用react native的类似笔记本的Demo
+
+### 安装
+1. clone repo
+    git clone ... .git
+2. cd 项目路径
+3. 安装依赖  `npm install `
+4. 安装以Android为例，
+    a：首先使用`adb reverse tcp 8081 tcp:8081` 将电脑8081端口反向代理带测试机
+    b:`react-native run-android`  运行
+
+
+## NavigationUsage 记录Navigation的用法
 
 NavigationUsage的用法
 
-## PanResponderUsage
+## PanResponderUsage 记录 PanResponder的用法
 
 PanResponderUsage的用法
 
-## HybridUsage
+## HybridUsage 一些组件的用法（WebView,ProgressBar，网络请求与Native交互等等。）
 
 React Native 网络访问，WebView的使用，混合开发封装NativeUI组件
 
