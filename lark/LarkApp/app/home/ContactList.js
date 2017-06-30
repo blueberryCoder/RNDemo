@@ -104,7 +104,7 @@ export default class ContactList extends Component {
         } else {
             const g: string = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CALL_PHONE, {
                 title: '申请打电话权限',
-                message: '应用只有获得摄像头权限才能打电话',
+                message: '应用只有获得打电话权限才能打电话',
             })
             if (g == PermissionsAndroid.RESULTS.GRANTED) {
                 //打电话

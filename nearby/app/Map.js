@@ -35,7 +35,7 @@ export default class Map extends Component {
                 <StatusBar
                     backgroundColor={CommonColor.primaryColor}/>
                 <WebView
-                    source={require('../res/html/Map.html' + this.props.navigation.state.params.params)}
+                    source={require('../res/html/Map.html')}
                 />
             </View>
         );

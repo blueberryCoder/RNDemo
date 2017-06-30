@@ -39,14 +39,6 @@ export default class List extends Component {
         Util.get(url, (data: any) => {
             if (data.status) {
                 this._data = this._data.concat(data.pois);
-
-                let locations = [];
-                for (let i = 0; i < data.pois.length && i < 10; i++) {
-                    locations[i] = data.pois[i].location;
-                }
-
-                // notify
-                this.props.markersCallBack(locations);
             }
 
             this.setState({isRefresh: false});
@@ -127,7 +119,6 @@ export default class List extends Component {
 List.propTypes = {
     type: React.PropTypes.string.isRequired,
     itemClick: React.PropTypes.func.isRequired,
-    markersCallBack: React.PropTypes.func.isRequired,
 }
 
 var styles = StyleSheet.create({

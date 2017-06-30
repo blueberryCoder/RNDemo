@@ -8,11 +8,12 @@ import {Image, View} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import Detail from '../../Detail';
 import FilmList from './FilmList';
+import Map from '../../Map';
 
 const BankStackNavigator = StackNavigator({
     BankList: {screen: FilmList},
     Detail: {screen: Detail},
-    Map: {screen: View}
+    Map: {screen: Map}
 }, {});
 
 BankStackNavigator.navigationOptions = {

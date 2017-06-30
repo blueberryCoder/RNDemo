@@ -5,9 +5,42 @@
 
 import React, {Component} from 'react';
 
-import {StyleSheet, View, Image, Text, TouchableOpacity, Alert} from 'react-native';
+import {
+    StyleSheet, View, Image, Text, TouchableOpacity, Alert,
+    PermissionsAndroid, Linking, ToastAndroid
+} from 'react-native';
 import Util from '../Util';
 export default class ListItem extends Component {
+
+    _callPhone = async (phone: string) => {
+        let url = 'tel://' + phone;
+        const granted = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.CALL_PHONE);
+        if (granted) {
+            //打电话
+            this._realCallPhone(url);
+        } else {
+            const g = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CALL_PHONE, {
+                title: '申请打电话权限',
+                message: '应用只有获取打电话权限，才可以打电话',
+            });
+            if (g === PermissionsAndroid.PERMISSIONS.GRANTED) {
+                //打电话
+                this._realCallPhone(url);
+            } else {
+                //用户没有屌你
+            }
+
+        }
+
+    }
+
+    _realCallPhone(url: string) {
+        Linking.canOpenURL(url)
+            .then(supported => supported ?
+                Linking.openURL(url) : ToastAndroid.show('该设备不支持打电话', ToastAndroid.SHORT))
+            .catch(e => ToastAndroid.show('打电话失败' + e, ToastAndroid.SHORT));
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -34,7 +67,9 @@ export default class ListItem extends Component {
                     {
                         this.props.data.tel && <TouchableOpacity
                             style={styles.telContainer}
-                            onPress={() => Alert.alert('打电话', this.props.tel || '')}
+                            onPress={() => {
+                                this._callPhone(this.props.data.tel)
+                            }}
                         >
                             <Text style={styles.tel}>
                                 电话

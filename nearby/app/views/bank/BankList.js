@@ -25,26 +25,12 @@ export default class BankList extends Component {
         headerTintColor: 'white',
         headerStyle: {backgroundColor: CommonColor.primaryColor,}
     }
-    _markers = []
-
     constructor() {
         super();
-
-        let markers = '';
-
-        for (let a in this._markers) {
-            markers += a;
-            markers += ';'
-        }
-
-
         subject.fun = () => {
-            this.props.navigation.navigate('Map', {
-                params: '?pos=' + LocationHolder.location + '&markers=' + markers
-            });
+            this.props.navigation.navigate('Map');
         }
     }
-
 
     render() {
         return (
@@ -58,13 +44,7 @@ export default class BankList extends Component {
                     style={{width: '100%', flex: 1}}
                     type="银行"
                     itemClick={id => {
-                        // Alert.alert('itemClick', id || '');
                         this.props.navigation.navigate('Detail', {id: id})
-                    }}
-
-                    markersCallBack={array => {
-                        this._markers.length = 0;
-                        this._markers.concat(array);
                     }}
                 />
             </View>

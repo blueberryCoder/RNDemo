@@ -8,18 +8,30 @@ import React, {Component} from 'react';
 import {View, StyleSheet, TouchableOpacity, Text, StatusBar, Alert} from 'react-native';
 import {CommonColor} from '../../CommonStyle';
 import List from '../List';
+
+let subject = {
+    fun: null,
+}
+
 export default class FoodList extends Component {
     static navigationOptions = {
         title: '美食',
         headerRight: (<TouchableOpacity
             onPress={() => {
-                Alert.alert('地图');
+                subject.fun();
             }}
             style={{padding: 10}}>
             <Text style={{color: 'white'}}>地图</Text>
         </TouchableOpacity>),
         headerTintColor: 'white',
         headerStyle: {backgroundColor: CommonColor.primaryColor,}
+    }
+
+    constructor() {
+        super();
+        subject.fun = () => {
+            this.props.navigation.navigate('Map');
+        }
     }
 
     render() {
