@@ -29,9 +29,10 @@ $ react-native run-android
 密码：123
 
 ## nearyby 一个使用高德地图搜索附近的APP
-代码上传之后，我将乎禁止该appID,需要使用的哈，需要去高德平台申请新的key，
+代码上传之后，我将乎禁止该appID,需要使用的话，需要去高德平台申请新的key，
 
-
+## Douban 一个使用豆瓣API的APP,
+包含音乐搜索，电影搜索、图书搜索
 
 ## Note 一个记录日记的App
     一个用react native的类似笔记本的Demo
